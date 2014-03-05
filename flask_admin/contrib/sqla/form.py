@@ -118,6 +118,8 @@ class AdminModelConverter(ModelConverterBase):
         # Override field type if necessary
         override = self._get_field_override(prop.key)
         if override:
+            kwargs['remote_model'] = remote_model
+            kwargs['session'] = self.session
             return override(**kwargs)
 
         if prop.direction.name == 'MANYTOONE' or not prop.uselist:
